@@ -1,0 +1,7 @@
+ul
+    li= @user.name
+    li= @user.email
+    li= @user.introduction
+    li= image_tag @user.image
+= link_to '編集', edit_user_path(@user)
+= link_to '削除', @user, method: :delete
