@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
-  root to: 'users#index'
-  resources :users
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  root to: 'recipes#index'
+  resources :recipes
+  resources :users do
+    member do
+      get 'mypage'
+    end
+  end
 end

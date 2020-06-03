@@ -36,3 +36,8 @@ ja:
         password_confirmation: パスワード(確認)
         introduction: 自己紹介
         image: 画像 
+      recipe:
+        id: ID
+        name: レシピ名
+        introduction: 作り方
+        image: 画像
