@@ -1,6 +1,7 @@
 ul
     li= @recipe.name
     li= @recipe.introduction
-    li= image_tag @recipe.image
+    - @recipe.images.each do |image|
+        li= image_tag image
 = link_to '編集', edit_recipe_path(@recipe)
 = link_to '削除', @recipe, method: :delete

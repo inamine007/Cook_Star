@@ -1,5 +1,8 @@
 class RecipesController < ApplicationController
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+
   def index
+    @recipes = Recipe.all
   end
 
   def new
@@ -17,17 +20,29 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = current_user.recipes.find(params[:id])
   end
 
   def edit
   end
 
+  def update
+    @recipe.update!(recipe_params)
+    redirect_to recipes_path, notice: "「#{@recipe.name}」を更新しました"
+  end
+
+  def destroy
+    @recipe.destroy
+    redirect_to recipes_path, notice: "「#{@recipe.name}」を削除しました"
+  end
+
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :introduction, :image)
+    params.require(:recipe).permit(:name, :introduction, images: [])
   end
 
-  
+  def set_recipe
+    @recipe = current_user.recipes.find(params[:id])
+  end
+
 end

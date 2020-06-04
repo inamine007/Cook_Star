@@ -1,2 +1,3 @@
-h1 Recipes#index
-p Find me in app/views/recipes/index.html.slim
+- @recipes.each do |recipe|
+    ul
+        li= link_to recipe.name, recipe_path(recipe)

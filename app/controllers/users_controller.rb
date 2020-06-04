@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    @groups = Group.where(admin_user_id: current_user.id)
+  end
+
+  def add_user_to_group
   end
 
   def show

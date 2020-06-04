@@ -1,0 +1,11 @@
+class CreateGroupUsers < ActiveRecord::Migration[6.0]
+  def change
+    create_table :group_users do |t|
+      t.references :user, foreign_key: true
+      t.references :group, foreign_key: true
+      t.boolean :activation, default: false, null: false
+
+      t.timestamps
+    end
+  end
+end

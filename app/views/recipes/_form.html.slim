@@ -1,0 +1,16 @@
+- if @recipe.errors.present?
+    ul#error_explanation
+        - @recipe.errors.full_messages.each do |message|
+            li= message
+
+= form_with model: @recipe, local: true do |f|
+    .
+        = f.label :name
+        = f.text_field :name, id: 'recipe_name'
+    .
+        = f.label :introduction
+        = f.text_field :introduction, id: 'recipe_introduction'
+    .
+        = f.label :images
+        = f.file_field :images, multiple: true, id: 'recipe_images'
+    = f.submit nil
