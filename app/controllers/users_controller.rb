@@ -1,14 +1,17 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-    @groups = Group.where(admin_user_id: current_user.id)
+    # @groups = Group.where(user_id: current_user.id)
   end
 
-  def add_user_to_group
-  end
+  # def add_user_to_group
+  #   @user = User.find(id: current_user.id)
+  #   @group = Group.new
+  # end
 
   def show
     @user = User.find(params[:id])
+    @recipe = Recipe.find(params[:id])
   end
 
   def new

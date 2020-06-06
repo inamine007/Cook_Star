@@ -1,1 +1,77 @@
 @import "bootstrap";
+
+html {
+    font-size: 100%;
+}
+
+body {
+    background-color: rgb(230, 230, 230);
+}
+
+a {
+    text-decoration: none !important;
+    color: #000;
+        &:hover {
+            color: rgb(255, 0, 0);
+        }
+}
+
+image {
+    max-width: 100%;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+li {
+    list-style: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    .logo {
+        width: 210px;
+        height: 60px;
+        margin-left: 100px;
+    }
+}
+
+.main-image {
+    margin: 10px 250px;
+}
+
+#grid-container {
+    border-top: 2px solid #000;
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 20px;
+    .grid-item1 {
+        margin: 0 auto;
+        .grid-item2 {
+            background-color: #fff;
+            border: 1px solid #000;
+            color: #000;
+            text-align: center;
+        }
+    }
+}
+
+.flex-box {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+    .box-a {
+        margin-top: 20px;
+    }
+    .name {
+        font-size: 2rem;
+    }
+    .space {
+        margin-right: 40px;
+    }
+}
