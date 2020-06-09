@@ -1,7 +1,30 @@
-ul
-    li= @recipe.name
-    li= @recipe.introduction
-    - @recipe.images.each do |image|
-        li= image_tag image
-= link_to '編集', edit_recipe_path(@recipe)
-= link_to '削除', @recipe, method: :delete
+.swiper-container
+    .swiper-wrapper
+        - @recipe.images.each do |image|
+            .swiper-slide= image_tag image, size: '450x450'
+    .swiper-pagination.swiper-pagination-white
+    .swiper-button-prev.swiper-button-black
+    .swiper-button-next.swiper-button-black
+.name-link
+    = link_to @recipe.user.name, user_path(@recipe.user)
+
+.recipe-name
+    | レシピ名<br>
+    p= @recipe.name
+.recipe-introduction
+    | 作り方<br>
+    p= @recipe.introduction
+
+javascript:
+    var mySwiper = new Swiper('.swiper-container', { 
+        navigation: {
+            prevEl: '.swiper-button-prev', 
+            nextEl: '.swiper-button-next',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+            clickable: true,
+        },
+    });
+

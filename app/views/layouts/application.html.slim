@@ -9,20 +9,25 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'https://unpkg.com/ress/dist/ress.min.css'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css"
+    = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"
     = favicon_link_tag 'CookStar_favicon.png'
   body
     header
       = link_to recipes_path
         = image_tag 'CookStar_logo.png', class: 'logo'
-      - if current_user
-        nav
-          ul.main-nav
-            li= link_to 'レシピ一覧', recipes_path
-            li= link_to 'ユーザー一覧', users_path
-            li= link_to 'ログアウト', logout_path, method: :delete
-      - else
-        li= link_to 'レシピ一覧', recipes_path
-        li= link_to 'ユーザー一覧', users_path
-        li= link_to 'ログイン', login_path
+      .search
+        = fa_icon "search 3x"
+      nav
+        ul.main-nav
+          li= link_to users_path do
+            = fa_icon "users 3x"
+          li= link_to new_user_path do
+            = fa_icon "user-plus 3x"
+          li= link_to login_path do
+            = fa_icon "sign-in 3x"
+          li= link_to logout_path do
+            = fa_icon "sign-out 3x"
     .container
       = yield
+    

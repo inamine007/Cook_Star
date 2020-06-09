@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :correct_user, only: [:mypage]
+
   def index
     @users = User.all
     # @groups = Group.where(user_id: current_user.id)
@@ -11,8 +13,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @recipe = Recipe.find(params[:id])
   end
+
+  def mypage
+  end
+
 
   def new
     @user = User.new
@@ -47,5 +52,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :introduction, :image)
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to root_url, alert: "権限がありません" unless current_user.id == @user.id
   end
 end

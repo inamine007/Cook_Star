@@ -4,22 +4,24 @@
             li= message
 
 = form_with model: @user, local: true do |f|
-    .
-        = f.label :name
-        = f.text_field :name, id: 'user_name'
-    .
-        = f.label :email
-        = f.email_field :email, id: 'user_email'
-    .
-        = f.label :introduction
-        = f.text_field :introduction, id: 'user_introduction'
-    .
-        = f.label :image
-        = f.file_field :image, id: 'user_image'
-    .
-        = f.label :password
-        = f.password_field :password, id: 'user_password'
-    .
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, id: 'user_password_confirmation'
-    = f.submit nil
+    .form
+        .form-group
+            = f.label :name
+            = f.text_field :name, id: 'user_name'
+        .form-group
+            = f.label :email
+            = f.email_field :email, id: 'user_email'
+        .form-group
+            = f.label :introduction
+            = f.text_area :introduction, id: 'user_introduction', size: '20x10'
+        .form-group
+            = f.label :password
+            = f.password_field :password, id: 'user_password'
+        .form-group
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation, id: 'user_password_confirmation'
+        .form-group
+            = f.label :image
+            = f.file_field :image, id: 'user_image'
+        .flex-box
+            = f.submit nil, class: 'button btn-blue'

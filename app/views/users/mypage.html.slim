@@ -1,0 +1,22 @@
+.flex-box.box-space
+    .flex-content-a
+        = image_tag @user.image, size: '400x400', class: 'circle-image'
+    .flex-content-b
+        .flex-item
+            .box-a
+                .flex-item.space
+                    .name= @user.name
+                .flex-item.pro
+                    = link_to 'プロフィールを編集', edit_user_path(@user), class: 'btn-white'
+            .box-a
+                .flex-item.space
+                    = "投稿：" + "#{@user.recipes.count}" + "件"
+                .flex-item
+                    = "グループ：" + "#{@user.groups.count}"
+        .intro
+            = simple_format(@user.introduction)
+
+#grid-container
+    - @user.recipes.each do |recipe|
+        .grid-item1
+            = link_to image_tag(recipe.images.first, size: '300x300'), recipe_path(recipe)

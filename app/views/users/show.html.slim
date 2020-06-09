@@ -1,16 +1,18 @@
-.flex-box
-    .flex-item
-        = image_tag @user.image, size: '480x300'
-    .flex-item
-        .name= @user.name
-        .flex-box.box-a
-            .flex-item.space
-                = "投稿：" + "#{@user.recipes.count}" + "件"
-            .flex-item
-                = "グループ：" + "#{@user.groups.count}"
-    .flex-item
-        = @user.introduction
+.flex-box.box-space
+    .flex-content-a
+        = image_tag @user.image, size: '400x400', class: 'circle-image'
+    .flex-content-b
+        .flex-item
+            .name= @user.name
+            .box-a
+                .flex-item.space
+                    = "投稿：" + "#{@user.recipes.count}" + "件"
+                .flex-item
+                    = "グループ：" + "#{@user.groups.count}"
+        .intro
+            = simple_format(@user.introduction)
 
 #grid-container
-    .grid-item1
-        = link_to image_tag(@user.recipes.images.first, size: '300x300'), recipe_path(@recipe)
+    - @user.recipes.each do |recipe|
+        .grid-item1
+            = link_to image_tag(recipe.images.first, size: '300x300'), recipe_path(recipe)
