@@ -37,6 +37,22 @@ li {
     margin-top: 20px;
 }
 
+.alert {
+    margin: 0 auto;
+    font-size: 1.125rem;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+.alert-info {
+    background-color: #0bd;
+}
+
+.alert-danger {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -189,7 +205,6 @@ header {
             width: 100%;
         }
         textarea {
-            width: 100%;
             height: 6rem;
         }
     }
@@ -220,6 +235,13 @@ header {
     }
 }
 
+.btn-red {
+    background-color: red;
+    &:hover {
+        background-color: rgb(247, 122, 122);
+    }
+}
+
 .flex-container {
     display: flex;
     border: 2px solid #000;
@@ -239,5 +261,90 @@ header {
         font-size: 1.5rem;
         margin: auto;
         width: 20%;
+    }
+}
+
+.comment-form {
+    margin: 30px 0;
+    textarea {
+        border: 1px #000 solid;
+        border-radius: 5px;
+        display: block;
+        padding: 5px;
+        font-size: 1.5rem;
+        width: 100%;
+        height: 6rem;
+        background-color: #fff;
+    }
+    .flex-right {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 1.5rem;
+    }
+}
+
+#comment-list {
+    .flex-box {
+        display: flex;
+        .list-item2 {
+            margin: auto 0;
+        }
+    }
+    .list-item3 {
+        width: 100%;
+        background-color: #fff;
+        padding: 10px;
+        font-size: 1.125rem;
+    }
+    .flex-right {
+        display: flex;
+        justify-content: flex-end;
+        a {
+            color: red;
+            &:hover {
+                color: rgb(247, 122, 122);
+            }
+        }
+    }
+}
+
+.form-recipe {
+    margin: 100px 0;
+    .form-group {
+        margin-top: 50px;
+        input[type="text"],
+        textarea {
+            border: 1px #000 solid;
+            background-color: #fff;
+            padding: 5px;
+            font-size: 1.5rem;
+            width: 50%;
+        }
+        textarea {
+            width: 100%;
+            height: 9rem;
+        }
+        label {
+            font-size: 1.125rem;
+            margin-top: 10px;
+            display: block;
+        }
+    }
+    .flex-right {
+        display: flex;
+        justify-content: flex-end;
+        color: #fff;
+    }
+}
+
+p {
+    white-space: pre-wrap;
+}
+
+.button-right {
+    display: flex;
+    justify-content: flex-end;
+    .button {
+        padding: 3px;
     }
 }

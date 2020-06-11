@@ -13,6 +13,10 @@ html
     = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"
     = favicon_link_tag 'CookStar_favicon.png'
   body
+    - flash.each do |key,value|
+      - key = "info" if key == "notice"
+      - key = "danger" if key == "alert" 
+      = content_tag :div, value, class: "alert alert-#{key}"
     header
       = link_to recipes_path
         = image_tag 'CookStar_logo.png', class: 'logo'
@@ -22,12 +26,14 @@ html
         ul.main-nav
           li= link_to users_path do
             = fa_icon "users 3x"
-          li= link_to new_user_path do
-            = fa_icon "user-plus 3x"
-          li= link_to login_path do
-            = fa_icon "sign-in 3x"
-          li= link_to logout_path do
-            = fa_icon "sign-out 3x"
+          - if current_user
+            li= link_to logout_path, method: :delete do
+              = fa_icon "sign-out 3x"
+          - else
+            li= link_to new_user_path do
+              = fa_icon "user-plus 3x"
+            li= link_to login_path do
+              = fa_icon "sign-in 3x"
     .container
       = yield
     

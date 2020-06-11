@@ -4,13 +4,15 @@
             li= message
 
 = form_with model: @recipe, local: true do |f|
-    .
-        = f.label :name
-        = f.text_field :name, id: 'recipe_name'
-    .
-        = f.label :introduction
-        = f.text_field :introduction, id: 'recipe_introduction'
-    .
-        = f.label :images
-        = f.file_field :images, multiple: true, id: 'recipe_images'
-    = f.submit nil
+    .form-recipe
+        .form-group
+            = f.label :images
+            = f.file_field :images, multiple: true, id: 'recipe_images'
+        .form-group
+            = f.label :name
+            = f.text_field :name, id: 'recipe_name'
+        .form-group
+            = f.label :introduction
+            = f.text_area :introduction, id: 'recipe_introduction'
+        .flex-right
+            = f.submit nil, class: 'button btn-blue'
