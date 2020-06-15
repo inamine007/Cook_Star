@@ -8,7 +8,8 @@ class User < ApplicationRecord
     has_secure_password
     has_one_attached :image
     has_many :recipes, dependent: :destroy
-    has_many :group_users
-    has_many :groups, through: :group_users
+    has_many :group_members
+    has_many :groups, through: :group_members
     has_many :comments
+
 end

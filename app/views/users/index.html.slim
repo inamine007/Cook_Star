@@ -6,4 +6,7 @@
             = link_to user.name, user_path(user)
         .recipe-box
             = "投稿数：" + "#{user.recipes.count}"
+        .recipe-box
+            | ホストグループ：
+            = link_to user.groups.where(owner_id: user.id).count, owner_group_path(user)
             

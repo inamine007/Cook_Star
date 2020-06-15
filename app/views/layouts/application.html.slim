@@ -27,6 +27,11 @@ html
           li= link_to users_path do
             = fa_icon "users 3x"
           - if current_user
+            li= link_to new_group_path do
+              = fa_icon "key 3x"
+            li= link_to new_recipe_path do
+              = fa_icon "plus 3x"
+            li= link_to image_tag(current_user.image, size: '50x50', style: 'border-radius: 50%;')
             li= link_to logout_path, method: :delete do
               = fa_icon "sign-out 3x"
           - else

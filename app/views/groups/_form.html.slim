@@ -1,0 +1,19 @@
+- if @group.errors.present?
+    ul#error_explanation
+        - @group.errors.full_messages.each do |message|
+            li= message
+
+= form_with model: @group, local: true do |f|
+    .form-recipe
+        .form-group
+            = f.label :name
+            = f.text_field :name, id: 'group_name'
+        .form-group
+            = f.label :password
+            = f.password_field :password, id: 'group_password', maxlength: 4
+            p.group-text ※半角数字４桁のパスワードを設定して下さい
+        .form-group
+            = f.label :introduction
+            = f.text_area :introduction, id: 'group_introduction'
+        .flex-right
+            = f.submit nil, class: 'button btn-blue'

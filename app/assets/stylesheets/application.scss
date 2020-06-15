@@ -247,7 +247,7 @@ header {
     border: 2px solid #000;
     justify-content: space-between;
     margin-top: 50px;
-    // background-color: #fff;
+    background-color: #fff;
     .image-box {
         margin: 5px;
         width: 10%;
@@ -255,12 +255,12 @@ header {
     .name-box {
         font-size: 2rem;
         margin: auto;
-        width: 70%;
+        width: 60%;
     }
     .recipe-box {
         font-size: 1.5rem;
         margin: auto;
-        width: 20%;
+        width: 30%;
     }
 }
 
@@ -313,6 +313,7 @@ header {
     .form-group {
         margin-top: 50px;
         input[type="text"],
+        input[type="password"],
         textarea {
             border: 1px #000 solid;
             background-color: #fff;
@@ -328,6 +329,10 @@ header {
             font-size: 1.125rem;
             margin-top: 10px;
             display: block;
+        }
+        .group-text {
+            font-size: 0.8rem;
+            color: red;
         }
     }
     .flex-right {
@@ -347,4 +352,71 @@ p {
     .button {
         padding: 3px;
     }
+}
+
+.groups-container {
+    margin-top: 50px;
+    .groups-flex {
+        display: flex;
+        justify-content: space-between;
+        .group-box {
+            font-size: 2rem;
+            width: 80%;
+        }
+        .group-box2 {
+            width: 20%;
+            font-size: 2rem;
+        }
+    }
+    .group-box3 {
+        border: 2px solid #000;
+        font-size: 2rem;
+        background-color: #fff;
+        padding: 10px;
+        p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+    span {
+        font-size: 1.25rem;
+    }
+}
+
+#group-content {
+    margin: 100px 0 30px 0;
+    .flex-group {
+        display: flex;
+        justify-content: space-around;
+        
+        .box {
+            font-size: 2rem;
+            span {
+                color: #000;
+                font-size: 1.5rem;
+            }
+        }
+        .red {
+            color: red;
+        }
+    }
+    .group-intro {
+        font-size: 2.5rem;
+        min-height: 200px;
+        background-color: #fff;
+        padding: 10px;
+        p {
+            word-wrap: break-word;
+        }
+    }
+    .flex-right {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 1.5rem;
+    }
+}
+
+.members {
+    border-top: 2px solid #000;
 }

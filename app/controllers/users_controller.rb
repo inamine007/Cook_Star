@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    # @groups = Group.where(user_id: current_user.id)
   end
 
   # def add_user_to_group

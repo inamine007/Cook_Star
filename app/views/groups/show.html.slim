@@ -1,0 +1,26 @@
+#group-content
+    .flex-group
+        .box.red
+            span グループ名:
+            = @group.name
+        .box
+            = "人数:" + "#{@group.users.count}"
+    .group-intro
+        = @group.introduction
+    .flex-right
+        - if current_user.id == @group.owner_id
+            = link_to "編集", edit_group_path(@group), class: 'button btn-blue'
+            = link_to "削除", @group, metod: :delete, data: { confirm: "「#{@group.name}」を削除します。よろしいですか？" }, class: 'button btn-red'
+
+.members
+    - @member.each do |m|
+        .flex-container
+            .image-box
+                = link_to image_tag(m.image, size: '100x100', class: 'circle-image'), user_path(m)
+            .name-box
+                = link_to m.name, user_path(m)
+            .recipe-box
+                = "投稿数：" + "#{m.recipes.count}"
+            .recipe-box
+                | ホストグループ：
+                = link_to m.groups.pluck(:owner_id).count, owner_group_path(m)
