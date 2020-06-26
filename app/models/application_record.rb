@@ -1,5 +1,6 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
+  scope :recent, -> { order(created_at: :desc) }
 
   def default_image
     if !self.image.attached?

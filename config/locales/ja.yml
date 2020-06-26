@@ -27,6 +27,8 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       user: ユーザー
+      recipe: レシピ
+      comment: コメント
     attributes:
       user:
         id: ID

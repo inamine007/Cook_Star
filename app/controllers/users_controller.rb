@@ -1,14 +1,10 @@
 class UsersController < ApplicationController
   before_action :correct_user, only: [:mypage]
+  skip_before_action :login_required, only: [:index, :new]
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(20).recent
   end
-
-  # def add_user_to_group
-  #   @user = User.find(id: current_user.id)
-  #   @group = Group.new
-  # end
 
   def show
     @user = User.find(params[:id])

@@ -2,9 +2,10 @@
     .swiper-wrapper
         - @recipe.images.each do |image|
             .swiper-slide= image_tag image, size: '450x450'
-    .swiper-pagination.swiper-pagination-white
-    .swiper-button-prev.swiper-button-black
-    .swiper-button-next.swiper-button-black
+    - if @recipe.images.count >= 2
+        .swiper-pagination.swiper-pagination-white
+        .swiper-button-prev.swiper-button-black
+        .swiper-button-next.swiper-button-black
 .name-link
     = link_to @recipe.user.name, user_path(@recipe.user)
 
@@ -14,7 +15,7 @@
 .recipe-introduction
     | 作り方<br>
     p= @recipe.introduction
-- if @recipe.user.id == current_user.id
+- if @user == current_user
     .button-right
         = link_to '編集', edit_recipe_path(@recipe), class: 'button btn-blue'
         = link_to '削除', @recipe, method: :delete, data: { confirm: "「#{@recipe.name}」を削除します。よろしいですか？" }, class: 'button btn-red'
@@ -34,6 +35,11 @@
         - if c.user_id = current_user.id
             .flex-right
                 = link_to "削除", recipe_comment_path(@recipe, c), method: :delete
+
+
+.page
+    = paginate @comments
+    = page_entries_info @comments
 
 javascript:
     var mySwiper = new Swiper('.swiper-container', { 

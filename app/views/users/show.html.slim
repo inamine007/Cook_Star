@@ -8,11 +8,12 @@
                 .flex-item.space
                     = "投稿：" + "#{@user.recipes.count}" + "件"
                 .flex-item
-                    = "グループ：" + "#{@user.groups.count}"
+                    | グループ：
+                    = link_to @user.groups.count, owner_group_path(@user)
         .intro
             = simple_format(@user.introduction)
 
 #grid-container
-    - @user.recipes.each do |recipe|
+    - @user.recipes.where(group_id: nil).each do |recipe|
         .grid-item1
             = link_to image_tag(recipe.images.first, size: '300x300'), recipe_path(recipe)

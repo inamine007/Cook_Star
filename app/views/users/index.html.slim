@@ -1,12 +1,17 @@
 - @users.each do |user|
     .flex-container
-        .image-box
-            = link_to image_tag(user.image, size: '100x100', class: 'circle-image'), user_path(user)
-        .name-box
-            = link_to user.name, user_path(user)
-        .recipe-box
-            = "投稿数：" + "#{user.recipes.count}"
-        .recipe-box
-            | ホストグループ：
-            = link_to user.groups.where(owner_id: user.id).count, owner_group_path(user)
-            
+        .flex-a
+            .image-box
+                = link_to image_tag(user.image, size: '100x100', class: 'circle-image'), user_path(user)
+            .name-box
+                = link_to user.name, user_path(user)
+        .flex-b
+            .recipe-box
+                = "投稿数：" + "#{user.recipes.count}"
+            .recipe-box
+                | ホストグループ：
+                = link_to user.groups.where(owner_id: user.id).count, owner_group_path(user)
+
+.page
+    = paginate @users
+    = page_entries_info @users

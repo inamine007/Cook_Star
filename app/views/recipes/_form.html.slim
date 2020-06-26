@@ -14,5 +14,23 @@
         .form-group
             = f.label :introduction
             = f.text_area :introduction, id: 'recipe_introduction'
+        .radio-group
+            = f.radio_button :group_id, :""
+            = f.label :group_id_, "公開投稿"
+        .radio-group
+            = f.collection_radio_buttons(:group_id, current_user.groups.all, :id, :name)
         .flex-right
             = f.submit nil, class: 'button btn-blue'
+
+javascript:
+    $(function(){
+        var nowchecked = $('input[name=recipe[group_id]]:checked').val();
+        $('input[name=recipe[group_id]]').click(function(){
+            if($(this).val() == nowchecked) {
+                $(this).prop('checked', false);
+                nowchecked = false;
+            } else {
+                nowchecked = $(this).val();
+            }
+        });
+    });

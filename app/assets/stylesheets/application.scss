@@ -2,12 +2,51 @@
 @import "bootstrap";
 @import 'font-awesome';
 
+$sp: 990px;
+@mixin sp {
+    @media (max-width: ($sp)) {
+        @content;
+    }
+}
+
+$mp: 830px;
+@mixin mp {
+    @media (max-width: ($mp)) {
+        @content;
+    }
+}
+
+$dp: 700px;
+@mixin dp {
+    @media (max-width: ($dp)) {
+        @content;
+    }
+}
+
+$tp: 560px;
+@mixin tp {
+    @media (max-width: ($tp)) {
+        @content;
+    }
+}
+
+$ap: 400px;
+@mixin ap {
+    @media (max-width: ($ap)) {
+        @content;
+    }
+}
+
 html {
     font-size: 100%;
 }
 
 body {
     background-color: rgb(230, 230, 230);
+}
+
+.wrap {
+    overflow: hidden;
 }
 
 a {
@@ -18,13 +57,18 @@ a {
         }
 }
 
-image {
+img {
     max-width: 100%;
 }
 
 .container {
     max-width: 1100px;
     margin: 0 auto;
+    @include sp() {
+        max-width: 100%;
+        padding: 0;
+    }
+
 }
 
 li {
@@ -57,40 +101,131 @@ header {
     display: flex;
     justify-content: space-between;
     background-color: #fff;
+    @include tp() {
+        display: block;
+    }
     .logo {
         width: 210px;
         height: 73px;
         margin-left: 100px;
+        object-fit: cover;
+        @include sp() {
+            margin-left: 0;
+        }
+        @include dp() {
+            height: 60px;
+        }
+        @include tp() {
+            display: none;
+        }
     }
     .search {
         margin: 10px;
+        @include mp() {
+            display: none;
+        }
+        @include dp() {
+            margin: 0;
+        }
+        .fa {
+            margin-left: 10px;
+            @include dp() {
+                margin-top: 10px;
+            }
+        }
+    }
+    ul {
+        @include dp() {
+            margin-bottom: 0;
+        }
     }
     .main-nav {
         display: flex;
+        justify-content: space-evenly;
         li {
             margin: 10px 10px 0 0;
+        }
+        .myicon {
+            @include dp() {
+                margin: 0;
+            }
+        }
+        .fa-home {
+            display: none;
+            @include tp() {
+                display: block;
+            }
         }
     }
 }
 
-.main-image {
-    margin: 10px 250px;
+.top-image {
+    margin: 10px;
+    text-align: center;
+    .main-image {
+        @include tp() {
+            width: 400px;
+            height: 300px;
+        }
+        @include ap() {
+            width: 300px;
+            height: auto;
+        }
+    }
 }
 
 #grid-container {
     border-top: 2px solid #000;
     padding-top: 40px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     row-gap: 20px;
+    @include sp() {
+        grid-template-columns: repeat(2,1fr);
+    }
+    @include dp() {
+        grid-template-columns: 1fr;
+    }
     .grid-item1 {
         margin: 0 auto;
+        img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            @include sp() {
+                width: 350px;
+                height: 350px;
+            }
+            @include dp() {
+                width: 500px;
+                height: 500px;
+            }
+            @include tp() {
+                width: 400px;
+                height: 400px;
+            }
+            @include ap() {
+                width: 100%;
+            }
+        }
         .grid-item2 {
             background-color: #fff;
             border: 1px solid #000;
             color: #000;
             text-align: center;
         }
+    }
+}
+
+.fa {
+    @include dp() {
+        font-size: 2em;
+    }
+}
+
+.fa-search {
+    @include dp() {
+        margin-top: 10px;
     }
 }
 
@@ -104,48 +239,96 @@ header {
 
 .flex-box {
     display: flex;
-    .box-a {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        margin: 10px;
+    @include tp() {
+        flex-direction: column;
     }
-    .name {
-        font-size: 2rem;
+    .flex-content-a {
+        width: 40%;
+        .circle-image {
+            @include sp() {
+                width: 100%;
+                height: auto;
+            }
+            @include tp() {
+                width: 300px;
+                height: 300px;
+            }
+        }
+        @include tp() {
+            width: 100%;
+            text-align: center;
+        }
     }
-    .space {
-        margin-right: 40px;
-    }
-    .pro {
-        border: 1px solid #000;
-        padding: 3px;
-        background-color: #fff;
-        margin: auto;
-        width: 160px;
-    }
-    .intro {
-        width: 600px;
-        padding: 10px;
-        font-size: 2rem;
-        p {
-            word-wrap: break-word;
+    .flex-content-b {
+        width: 60%;
+        @include tp() {
+            width: 100%;
+        }
+        .box-a {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            margin: 10px;
+        }
+        .name {
+            font-size: 2rem;
+            @include mp() {
+                font-size: 1.25rem;
+            }
+        }
+        .space {
+            margin-right: 40px;
+        }
+        .pro {
+            border: 1px solid #000;
+            padding: 3px;
+            background-color: #fff;
+            margin: auto;
+            width: 160px;
+            text-align: center;
+            @include mp() {
+                font-size: 0.8rem;
+            }
+        }
+        .intro {
+            width: 100%;
+            padding: 10px;
+            font-size: 2rem;
+            @include dp() {
+                font-size: 1.5rem;
+            }
+            p {
+                word-wrap: break-word;
+            }
         }
     }
 }
 
 .swiper-container {
     width: 450px;
+    @include tp() {
+        width: auto;
+        text-align: center;
+    }
     .swiper-wrapper {
         margin-top: 80px;
         .swiper-slid {
             width: 100%;
             max-height: 500px;
             min-height: 200px;
-            img {
-                width: 100%;
-                min-height: 250px;
-                object-fit: cover;
+            @include tp() {
+                width: auto;
             }
+        }
+        img {
+            width: 100%;
+            min-height: 250px;
+            object-fit: cover;
+        }
+    }
+    .swiper-button-black {
+        @include ap() {
+            display: none;
         }
     }
 }
@@ -153,6 +336,9 @@ header {
 .name-link {
     font-size: 2rem;
     text-align: center;
+    @include tp() {
+        font-size: 1.25rem;
+    }
 }
 
 .recipe-name {
@@ -162,6 +348,9 @@ header {
         font-size: 2rem;
         background-color: #fff;
         padding: 10px;
+        @include tp() {
+            font-size: 1.25rem;
+        }
     }
 }
 
@@ -170,6 +359,9 @@ header {
         font-size: 1.5rem;
         background-color: #fff;
         padding: 10px;
+        @include ap() {
+            font-size: 1rem;
+        }
     }
 }
 
@@ -179,20 +371,22 @@ header {
     box-shadow: 0px 0px 10px;
     width: 500px;
     margin: 10% auto;
-    // @include tp() {
-    //     width: 80%;
-    //     min-width: auto;
-    // }
-    // @include ap() {
-    //     width: 100%;
-    // }
+    @include tp() {
+        width: 300px;
+    }
     .form-group {
         width: 450px;
         margin: 0 auto;
+        @include tp() {
+            width: 300px;
+        }
         label {
             font-size: 1.125rem;
             margin-top: 10px;
             display: block;
+            @include tp() {
+                font-size: 1rem;
+            }
         }
         input[type="text"],
         input[type="email"],
@@ -203,6 +397,9 @@ header {
             padding: 5px;
             font-size: 1rem;
             width: 100%;
+            @include tp() {
+                width: 95%;
+            }
         }
         textarea {
             height: 6rem;
@@ -226,6 +423,10 @@ header {
     border-radius: 5px;
     padding: 15px 30px;
     color: rgb(255, 255, 255);
+    @include tp() {
+        font-size: 1.2rem;
+        padding: 5px 10px;
+    }
 }
 
 .btn-blue {
@@ -248,19 +449,53 @@ header {
     justify-content: space-between;
     margin-top: 50px;
     background-color: #fff;
-    .image-box {
-        margin: 5px;
-        width: 10%;
+    @include sp() {
+        flex-direction: column;
     }
-    .name-box {
-        font-size: 2rem;
-        margin: auto;
+    .flex-a {
         width: 60%;
+        display: flex;
+        @include sp() {
+            width: 100%;
+            justify-content: space-around;
+        }
+        .image-box {
+            margin: 5px;
+            .circle-image {
+                @include tp() {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+        .name-box {
+            font-size: 2rem;
+            margin: auto;
+            @include tp() {
+                font-size: 1.5rem;
+            }
+            @include ap() {
+                font-size: 1rem;
+            }
+        }
     }
-    .recipe-box {
-        font-size: 1.5rem;
-        margin: auto;
-        width: 30%;
+    .flex-b {
+        width: 40%;
+        display: flex;
+        @include sp() {
+            width: 100%;
+            justify-content: flex-end;
+        }
+        .recipe-box {
+            font-size: 1.5rem;
+            margin: auto 20px auto 0;
+            @include sp() {
+                font-size: 1rem;
+            }
+            @include ap() {
+                font-size: 0.7rem;
+            }
+        }
     }
 }
 
@@ -320,10 +555,23 @@ header {
             padding: 5px;
             font-size: 1.5rem;
             width: 50%;
+            @include dp() {
+                font-size: 1.25rem;
+                width: 70%;
+            }
+            @include ap() {
+                font-size: 1rem;
+            }
         }
         textarea {
             width: 100%;
             height: 9rem;
+            @include dp() {
+                height: 7rem;
+            }
+            @include ap() {
+                height: 5rem;
+            }
         }
         label {
             font-size: 1.125rem;
@@ -333,6 +581,14 @@ header {
         .group-text {
             font-size: 0.8rem;
             color: red;
+        }
+    }
+    .radio-group {
+        label {
+            font-size: 1.125rem;
+        }
+        input[type="radio"] {
+            margin-left: 20px;
         }
     }
     .flex-right {
@@ -359,13 +615,24 @@ p {
     .groups-flex {
         display: flex;
         justify-content: space-between;
+        @include dp() {
+            flex-direction: column;
+        }
         .group-box {
             font-size: 2rem;
             width: 80%;
+            @include dp() {
+                width: 100%;
+                font-size: 1.5rem;
+            }
         }
         .group-box2 {
             width: 20%;
             font-size: 2rem;
+            @include dp() {
+                width: 100%;
+                font-size: 1.25rem;
+            }
         }
     }
     .group-box3 {
@@ -373,6 +640,9 @@ p {
         font-size: 2rem;
         background-color: #fff;
         padding: 10px;
+        @include dp() {
+            font-size: 1.5rem;
+        }
         p {
             overflow: hidden;
             text-overflow: ellipsis;
@@ -381,6 +651,9 @@ p {
     }
     span {
         font-size: 1.25rem;
+        @include dp() {
+            font-size: 1rem;
+        }
     }
 }
 
@@ -388,8 +661,10 @@ p {
     margin: 100px 0 30px 0;
     .flex-group {
         display: flex;
-        justify-content: space-around;
-        
+        justify-content: space-between;
+        @include mp() {
+            flex-direction: column;
+        }
         .box {
             font-size: 2rem;
             span {
@@ -400,12 +675,26 @@ p {
         .red {
             color: red;
         }
+        .count-box {
+            font-size: 2rem;
+            @include mp() {
+                font-size: 1.5rem;
+            }
+        }
     }
     .group-intro {
         font-size: 2.5rem;
         min-height: 200px;
         background-color: #fff;
         padding: 10px;
+        @include dp() {
+            font-size: 2rem;
+            min-height: 150px;
+        }
+        @include ap() {
+            font-size: 1.5rem;
+            min-height: 100px;
+        }
         p {
             word-wrap: break-word;
         }
@@ -414,9 +703,151 @@ p {
         display: flex;
         justify-content: flex-end;
         font-size: 1.5rem;
+        input[type="password"] {
+            border: 1px #000 solid;
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 1rem;
+            background-color: #fff;
+            
+        }
     }
 }
 
 .members {
     border-top: 2px solid #000;
+    .flex-cont {
+        display: flex;
+        border: 2px solid #000;
+        justify-content: space-between;
+        margin-top: 50px;
+        background-color: #fff;
+        @include mp() {
+            flex-direction: column;
+        }
+        .flex-content-a {
+            display: flex;
+            .image-box {
+                margin: 5px;
+                .circle-image {
+                    @include tp() {
+                    width: 30px;
+                    height: 30px;
+                    }
+                }
+            }
+            .name-box {
+                font-size: 2rem;
+                margin: auto;
+                @include tp() {
+                    font-size: 1.5rem;
+                }
+                @include ap() {
+                    font-size: 1rem;
+                }
+            }
+        }
+        .flex-content-b {
+            display: flex;
+            @include mp() {
+                justify-content: flex-end;
+            }
+            .recipe-box {
+                font-size: 1.5rem;
+                margin: auto 20px auto 0;
+                @include sp() {
+                    font-size: 1rem;
+                }
+                @include ap() {
+                    font-size: 0.7rem;
+                }
+            }
+        }
+    }
+}
+
+
+.btn-group {
+    .btn {
+        padding: 0;
+        margin-top: 5px;
+        &:hover {
+            color: red;
+        }
+    }
+}
+
+.mygroup-container {
+    .mygroup-title {
+        margin: 100px 0;
+        font-size: 3rem;
+        text-align: center;
+        color: rgb(255, 0, 0);
+        @include tp() {
+            font-size: 2rem;
+        }
+        @include ap() {
+            font-size: 1.5rem;
+        }
+    }
+    .mygroup-item {
+        display: flex;
+        justify-content: flex-end;
+        .flex-box-a {
+            font-size: 1.5rem;
+            @include tp() {
+                font-size: 1.25rem;
+            }
+            @include ap() {
+                font-size: 1rem;
+            }
+        }
+        .flex-box-b {
+            font-size: 1.5rem;
+            margin-left: 30px;
+            @include tp() {
+                font-size: 1.25rem;
+            }
+            @include ap() {
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+.search {
+    input[type="text"] {
+        border: 1px #000 solid;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 1rem;
+        width: 100%;
+        margin-top: 8px;
+    }
+    .flex-box {
+        display: flex;
+    }
+}
+
+.search-hide {
+    display: none;
+    @include mp() {
+        display: block;
+    }
+    .search-flex {
+        display: flex;
+        justify-content: center;
+    }
+    input[type="text"] {
+        border: 1px #000 solid;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 1rem;
+        width: 100%;
+        margin-top: 8px;
+    }
+}
+
+.page {
+    margin-top: 50px;
 }

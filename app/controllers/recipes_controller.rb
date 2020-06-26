@@ -1,12 +1,12 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:edit, :update, :destroy]
+  skip_before_action :login_required, only: [:index, :show]
 
   def index
-    @recipes = Recipe.all
   end
 
   def new
-    @recipe = Recipe.new
+    @recipe = current_user.recipes.new
   end
 
   def create
@@ -21,7 +21,9 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @user = @recipe.user
     @comments = @recipe.comments.all
+    @comments = @recipe.comments.page(params[:page]).per(5).recent
     @comment = @recipe.comments.build 
   end
 
@@ -41,7 +43,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :introduction, images: [])
+    params.require(:recipe).permit(:name, :introduction, :group_id, images: [])
   end
 
   def set_recipe

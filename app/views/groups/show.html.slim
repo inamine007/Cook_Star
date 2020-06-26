@@ -3,24 +3,35 @@
         .box.red
             span グループ名:
             = @group.name
-        .box
+        .count-box
             = "人数:" + "#{@group.users.count}"
     .group-intro
         = @group.introduction
     .flex-right
         - if current_user.id == @group.owner_id
             = link_to "編集", edit_group_path(@group), class: 'button btn-blue'
-            = link_to "削除", @group, metod: :delete, data: { confirm: "「#{@group.name}」を削除します。よろしいですか？" }, class: 'button btn-red'
-
+            = link_to "削除", @group, method: :delete, data: { confirm: "「#{@group.name}」を削除します。よろしいですか？" }, class: 'button btn-red'
+            - else if not @group.users.ids.include?(current_user.id)
+                = form_with model: @add_group, local: true, url: add_user_new_group_path do |f|
+                    = f.hidden_field :id, :value => @group.id.to_i
+                    = f.password_field :password, placeholder: "※パスワードを入力"
+                    = f.submit "参加する"
+            - else
+                = form_with model: @member, local: true, url: remove_user_group_path do |f|
+                    = f.submit "退会する"
+                
+                
 .members
     - @member.each do |m|
-        .flex-container
-            .image-box
-                = link_to image_tag(m.image, size: '100x100', class: 'circle-image'), user_path(m)
-            .name-box
-                = link_to m.name, user_path(m)
-            .recipe-box
-                = "投稿数：" + "#{m.recipes.count}"
-            .recipe-box
-                | ホストグループ：
-                = link_to m.groups.pluck(:owner_id).count, owner_group_path(m)
+        .flex-cont
+            .flex-content-a
+                .image-box
+                    = link_to image_tag(m.image, size: '100x100', class: 'circle-image'), user_path(m)
+                .name-box
+                    = link_to m.name, user_path(m)
+            .flex-content-b
+                .recipe-box
+                    = "投稿数：" + "#{m.recipes.count}"
+                .recipe-box
+                    | ホストグループ：
+                    = link_to m.groups.where(owner_id: m.id).count, owner_group_path(m)

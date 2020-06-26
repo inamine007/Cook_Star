@@ -6,39 +6,64 @@ html
     = csrf_meta_tags
     = csp_meta_tag
     meta name="viewport" content="width=device-width, initial-scale=1.0"
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application', media: 'all'
     = stylesheet_link_tag 'https://unpkg.com/ress/dist/ress.min.css'
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application'
     = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css"
     = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"
     = favicon_link_tag 'CookStar_favicon.png'
   body
-    - flash.each do |key,value|
-      - key = "info" if key == "notice"
-      - key = "danger" if key == "alert" 
-      = content_tag :div, value, class: "alert alert-#{key}"
-    header
-      = link_to recipes_path
-        = image_tag 'CookStar_logo.png', class: 'logo'
-      .search
-        = fa_icon "search 3x"
-      nav
-        ul.main-nav
-          li= link_to users_path do
-            = fa_icon "users 3x"
-          - if current_user
-            li= link_to new_group_path do
-              = fa_icon "key 3x"
-            li= link_to new_recipe_path do
-              = fa_icon "plus 3x"
-            li= link_to image_tag(current_user.image, size: '50x50', style: 'border-radius: 50%;')
-            li= link_to logout_path, method: :delete do
-              = fa_icon "sign-out 3x"
-          - else
-            li= link_to new_user_path do
-              = fa_icon "user-plus 3x"
-            li= link_to login_path do
-              = fa_icon "sign-in 3x"
-    .container
-      = yield
+    .wrap
+      - flash.each do |key,value|
+        - key = "info" if key == "notice"
+        - key = "danger" if key == "alert" 
+        = content_tag :div, value, class: "alert alert-#{key}"
+      header
+        = link_to recipes_path
+          = image_tag 'CookStar_logo.png', class: 'logo'
+        .search
+          = search_form_for @search, url: recipes_path do |f|
+            .flex-box
+              .box
+                = f.text_field :name_or_user_name_cont, placeholder: "キーワードを入力"
+              .box
+                = button_tag type: 'submit' do
+                  = fa_icon "search 3x"
     
+        nav
+          ul.main-nav
+            li= link_to recipes_path do
+              = fa_icon "home 2x"
+            li= link_to users_path do
+              = fa_icon "users 3x"
+            - if current_user
+              .btn-group
+                button.btn.dropdown-toggle[data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button"]= fa_icon "id-card 3x"
+                .dropdown-menu
+                  - current_user.groups.each do |group|
+                    .dropdown-item= link_to group.name, mygroup_group_path(group)
+              li= link_to new_group_path do
+                = fa_icon "key 3x"
+              li= link_to new_recipe_path do
+                = fa_icon "plus 3x"
+              li.myicon= link_to image_tag(current_user.image, size: '50x50', style: 'border-radius: 50%;'), mypage_user_path(current_user)
+              li= link_to logout_path, method: :delete do
+                = fa_icon "sign-out 3x"
+            - else
+              li= link_to new_user_path do
+                = fa_icon "user-plus 3x"
+              li= link_to login_path do
+                = fa_icon "sign-in 3x"
+      .search-hide
+        = search_form_for @search, url: recipes_path do |f|
+          .search-flex
+            .box
+              = f.text_field :name_or_user_name_cont, placeholder: "キーワードを入力"
+            .box
+              = button_tag type: 'submit' do
+                = fa_icon "search 3x"
+      .container
+        = yield
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
