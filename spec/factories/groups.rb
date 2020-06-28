@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :group do
-    name { "MyString" }
-    introduction { "MyText" }
-    admin_user_id { 1 }
+    name { "テストグループ" }
+    introduction { "テストテキストテストテキスト" }
+    password { 1111 }
+    owner_id { 1 }
   end
 end

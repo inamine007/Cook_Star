@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :group_member do
-    references { "" }
-    references { "" }
+    user
+    group
   end
 end
