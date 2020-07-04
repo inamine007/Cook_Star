@@ -270,6 +270,12 @@ header {
             justify-content: flex-start;
             margin: 10px;
         }
+        .del {
+            margin: 10px;
+            @include mp() {
+                font-size: 0.8rem;
+            }
+        }
         .name {
             font-size: 2rem;
             @include mp() {
@@ -441,6 +447,11 @@ header {
     &:hover {
         background-color: rgb(247, 122, 122);
     }
+}
+
+.btn-s {
+    padding: 3px;
+    font-size: 1.125rem;
 }
 
 .flex-container {

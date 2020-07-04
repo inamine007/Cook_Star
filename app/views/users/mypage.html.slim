@@ -8,6 +8,8 @@
                     .name= @user.name
                 .flex-item.pro
                     = link_to 'プロフィールを編集', edit_user_path(@user), class: 'btn-white'
+            .del
+                = link_to '退会', @user, method: :delete, data: { confirm: "「退会すると登録したレシピは削除されます。よろしいですか？" }, class: 'button btn-red btn-s'
             .box-a
                 .flex-item.space
                     = "投稿：" + "#{@user.recipes.count}" + "件"
