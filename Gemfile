@@ -17,6 +17,7 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
+gem "rack", ">= 2.2.3"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -30,7 +31,7 @@ gem 'rails-i18n'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem "activesupport", ">= 6.0.3.1"
-gem "actionpack", ">= 6.0.3.1"
+gem "actionpack", ">= 6.0.3.2"
 gem "activestorage", ">= 6.0.3.1"
 gem "aws-sdk-s3", require: false
 # Use Active Storage variant
