@@ -34,6 +34,7 @@ gem "activesupport", ">= 6.0.3.1"
 gem "actionpack", ">= 6.0.3.2"
 gem "activestorage", ">= 6.0.3.1"
 gem "aws-sdk-s3", require: false
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
