@@ -32,7 +32,7 @@
             li.list-item1= image_tag c.user.image, size: '50x50', style: 'border-radius: 50%;'
             li.list-item2= link_to c.user.name, user_path(c.user)
         li.list-item3= c.content
-        - if c.user_id = current_user.id
+        - if c.user_id == current_user.id
             .flex-right
                 = link_to "削除", recipe_comment_path(@recipe, c), method: :delete
 
